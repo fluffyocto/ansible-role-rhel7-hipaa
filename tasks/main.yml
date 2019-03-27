@@ -1151,7 +1151,7 @@
     all_files:
     - /etc/audit/rules.d/access.rules
   when:
-  - find_ftruncate.matched == 0
+  - find_ftruncate.is defined and find_ftruncate.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -1185,7 +1185,7 @@
     all_files:
     - '{{ find_ftruncate.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_ftruncate.matched > 0
+  - find_ftruncate.is defined and find_ftruncate.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -1260,7 +1260,7 @@
   - -a always,exit -F arch=b64 -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -1336,7 +1336,7 @@
   - -a always,exit -F arch=b64 -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -1438,7 +1438,7 @@
     all_files:
     - /etc/audit/rules.d/access.rules
   when:
-  - find_openat.matched == 0
+  - find_openat.is defined and find_openat.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_unsuccessful_file_modification_openat | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -1472,7 +1472,7 @@
     all_files:
     - '{{ find_openat.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_openat.matched > 0
+  - find_openat.is defined and find_openat.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_unsuccessful_file_modification_openat | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -1547,7 +1547,7 @@
   - -a always,exit -F arch=b64 -S openat -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S openat -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_unsuccessful_file_modification_openat | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -1623,7 +1623,7 @@
   - -a always,exit -F arch=b64 -S openat -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S openat -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_unsuccessful_file_modification_openat | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -1725,7 +1725,7 @@
     all_files:
     - /etc/audit/rules.d/access.rules
   when:
-  - find_open.matched == 0
+  - find_open.is defined and find_open.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_unsuccessful_file_modification_open | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -1759,7 +1759,7 @@
     all_files:
     - '{{ find_open.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_open.matched > 0
+  - find_open.is defined and find_open.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_unsuccessful_file_modification_open | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -1834,7 +1834,7 @@
   - -a always,exit -F arch=b64 -S open -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S open -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_unsuccessful_file_modification_open | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -1910,7 +1910,7 @@
   - -a always,exit -F arch=b64 -S open -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S open -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_unsuccessful_file_modification_open | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -2012,7 +2012,7 @@
     all_files:
     - /etc/audit/rules.d/access.rules
   when:
-  - find_open_by_handle_at.matched == 0
+  - find_open_by_handle_at.is defined and find_open_by_handle_at.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -2046,7 +2046,7 @@
     all_files:
     - '{{ find_open_by_handle_at.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_open_by_handle_at.matched > 0
+  - find_open_by_handle_at.is defined and find_open_by_handle_at.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -2121,7 +2121,7 @@
   - -a always,exit -F arch=b64 -S open_by_handle_at -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S open_by_handle_at -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -2197,7 +2197,7 @@
   - -a always,exit -F arch=b64 -S open_by_handle_at -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S open_by_handle_at -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -2299,7 +2299,7 @@
     all_files:
     - /etc/audit/rules.d/access.rules
   when:
-  - find_truncate.matched == 0
+  - find_truncate.is defined and find_truncate.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -2333,7 +2333,7 @@
     all_files:
     - '{{ find_truncate.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_truncate.matched > 0
+  - find_truncate.is defined and find_truncate.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -2408,7 +2408,7 @@
   - -a always,exit -F arch=b64 -S truncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S truncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -2484,7 +2484,7 @@
   - -a always,exit -F arch=b64 -S truncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S truncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -2586,7 +2586,7 @@
     all_files:
     - /etc/audit/rules.d/access.rules
   when:
-  - find_creat.matched == 0
+  - find_creat.is defined and find_creat.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -2620,7 +2620,7 @@
     all_files:
     - '{{ find_creat.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_creat.matched > 0
+  - find_creat.is defined and find_creat.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -2695,7 +2695,7 @@
   - -a always,exit -F arch=b64 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S creat -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -2771,7 +2771,7 @@
   - -a always,exit -F arch=b64 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
   - -a always,exit -F arch=b64 -S creat -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -2873,7 +2873,7 @@
     all_files:
     - /etc/audit/rules.d/delete.rules
   when:
-  - find_rmdir.matched == 0
+  - find_rmdir.is defined and find_rmdir.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_file_deletion_events_rmdir | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -2907,7 +2907,7 @@
     all_files:
     - '{{ find_rmdir.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_rmdir.matched > 0
+  - find_rmdir.is defined and find_rmdir.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_file_deletion_events_rmdir | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -2976,7 +2976,7 @@
     line: -a always,exit -F arch=b64 -S rmdir -F auid>=1000 -F auid!=unset -F key=delete
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_file_deletion_events_rmdir | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -3046,7 +3046,7 @@
     dest: /etc/audit/audit.rules
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_file_deletion_events_rmdir | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -3148,7 +3148,7 @@
     all_files:
     - /etc/audit/rules.d/delete.rules
   when:
-  - find_renameat.matched == 0
+  - find_renameat.is defined and find_renameat.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -3182,7 +3182,7 @@
     all_files:
     - '{{ find_renameat.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_renameat.matched > 0
+  - find_renameat.is defined and find_renameat.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -3251,7 +3251,7 @@
     line: -a always,exit -F arch=b64 -S renameat -F auid>=1000 -F auid!=unset -F key=delete
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -3321,7 +3321,7 @@
     dest: /etc/audit/audit.rules
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -3423,7 +3423,7 @@
     all_files:
     - /etc/audit/rules.d/delete.rules
   when:
-  - find_unlinkat.matched == 0
+  - find_unlinkat.is defined and find_unlinkat.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_file_deletion_events_unlinkat | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -3457,7 +3457,7 @@
     all_files:
     - '{{ find_unlinkat.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_unlinkat.matched > 0
+  - find_unlinkat.is defined and find_unlinkat.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_file_deletion_events_unlinkat | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -3526,7 +3526,7 @@
     line: -a always,exit -F arch=b64 -S unlinkat -F auid>=1000 -F auid!=unset -F key=delete
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_file_deletion_events_unlinkat | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -3596,7 +3596,7 @@
     dest: /etc/audit/audit.rules
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_file_deletion_events_unlinkat | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -3698,7 +3698,7 @@
     all_files:
     - /etc/audit/rules.d/delete.rules
   when:
-  - find_rename.matched == 0
+  - find_rename.is defined and find_rename.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -3732,7 +3732,7 @@
     all_files:
     - '{{ find_rename.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_rename.matched > 0
+  - find_rename.is defined and find_rename.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -3801,7 +3801,7 @@
     line: -a always,exit -F arch=b64 -S rename -F auid>=1000 -F auid!=unset -F key=delete
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -3871,7 +3871,7 @@
     dest: /etc/audit/audit.rules
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -3973,7 +3973,7 @@
     all_files:
     - /etc/audit/rules.d/delete.rules
   when:
-  - find_unlink.matched == 0
+  - find_unlink.is defined and find_unlink.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -4007,7 +4007,7 @@
     all_files:
     - '{{ find_unlink.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_unlink.matched > 0
+  - find_unlink.is defined and find_unlink.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -4076,7 +4076,7 @@
     line: -a always,exit -F arch=b64 -S unlink -F auid>=1000 -F auid!=unset -F key=delete
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -4146,7 +4146,7 @@
     dest: /etc/audit/audit.rules
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -4207,7 +4207,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_setsebool.matched == 0
+  - find_setsebool.is defined and find_setsebool.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ audit_rules_execution_setsebool | bool }}'
@@ -4232,7 +4232,7 @@
     all_files:
     - '{{ find_setsebool.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_setsebool.matched > 0
+  - find_setsebool.is defined and find_setsebool.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ audit_rules_execution_setsebool | bool }}'
@@ -4334,7 +4334,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_semanage.matched == 0
+  - find_semanage.is defined and find_semanage.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -4359,7 +4359,7 @@
     all_files:
     - '{{ find_semanage.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_semanage.matched > 0
+  - find_semanage.is defined and find_semanage.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -4460,7 +4460,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_restorecon.matched == 0
+  - find_restorecon.is defined and find_restorecon.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -4484,7 +4484,7 @@
     all_files:
     - '{{ find_restorecon.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_restorecon.matched > 0
+  - find_restorecon.is defined and find_restorecon.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -4583,7 +4583,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_chcon.matched == 0
+  - find_chcon.is defined and find_chcon.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -4608,7 +4608,7 @@
     all_files:
     - '{{ find_chcon.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_chcon.matched > 0
+  - find_chcon.is defined and find_chcon.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -4711,7 +4711,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_postqueue.matched == 0
+  - find_postqueue.is defined and find_postqueue.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_privileged_commands_postqueue | bool }}'
   - '{{ no_reboot_needed | bool }}'
@@ -4737,7 +4737,7 @@
     all_files:
     - '{{ find_postqueue.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_postqueue.matched > 0
+  - find_postqueue.is defined and find_postqueue.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_privileged_commands_postqueue | bool }}'
   - '{{ no_reboot_needed | bool }}'
@@ -4843,7 +4843,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_sudoedit.matched == 0
+  - find_sudoedit.is defined and find_sudoedit.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -4869,7 +4869,7 @@
     all_files:
     - '{{ find_sudoedit.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_sudoedit.matched > 0
+  - find_sudoedit.is defined and find_sudoedit.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -4975,7 +4975,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_postdrop.matched == 0
+  - find_postdrop.is defined and find_postdrop.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -5001,7 +5001,7 @@
     all_files:
     - '{{ find_postdrop.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_postdrop.matched > 0
+  - find_postdrop.is defined and find_postdrop.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -5107,7 +5107,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_su.matched == 0
+  - find_su.is defined and find_su.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -5133,7 +5133,7 @@
     all_files:
     - '{{ find_su.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_su.matched > 0
+  - find_su.is defined and find_su.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -5239,7 +5239,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_gpasswd.matched == 0
+  - find_gpasswd.is defined and find_gpasswd.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_privileged_commands_gpasswd | bool }}'
   - '{{ no_reboot_needed | bool }}'
@@ -5265,7 +5265,7 @@
     all_files:
     - '{{ find_gpasswd.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_gpasswd.matched > 0
+  - find_gpasswd.is defined and find_gpasswd.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_privileged_commands_gpasswd | bool }}'
   - '{{ no_reboot_needed | bool }}'
@@ -5371,7 +5371,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_umount.matched == 0
+  - find_umount.is defined and find_umount.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -5397,7 +5397,7 @@
     all_files:
     - '{{ find_umount.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_umount.matched > 0
+  - find_umount.is defined and find_umount.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -5503,7 +5503,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_crontab.matched == 0
+  - find_crontab.is defined and find_crontab.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -5529,7 +5529,7 @@
     all_files:
     - '{{ find_crontab.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_crontab.matched > 0
+  - find_crontab.is defined and find_crontab.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -5635,7 +5635,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_sudo.matched == 0
+  - find_sudo.is defined and find_sudo.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -5661,7 +5661,7 @@
     all_files:
     - '{{ find_sudo.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_sudo.matched > 0
+  - find_sudo.is defined and find_sudo.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -5767,7 +5767,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_ssh_keysign.matched == 0
+  - find_ssh_keysign.is defined and find_ssh_keysign.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -5793,7 +5793,7 @@
     all_files:
     - '{{ find_ssh_keysign.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_ssh_keysign.matched > 0
+  - find_ssh_keysign.is defined and find_ssh_keysign.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -5899,7 +5899,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_userhelper.matched == 0
+  - find_userhelper.is defined and find_userhelper.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ audit_rules_privileged_commands_userhelper | bool }}'
@@ -5925,7 +5925,7 @@
     all_files:
     - '{{ find_userhelper.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_userhelper.matched > 0
+  - find_userhelper.is defined and find_userhelper.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ audit_rules_privileged_commands_userhelper | bool }}'
@@ -6031,7 +6031,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_passwd.matched == 0
+  - find_passwd.is defined and find_passwd.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_privileged_commands_passwd | bool }}'
   - '{{ no_reboot_needed | bool }}'
@@ -6057,7 +6057,7 @@
     all_files:
     - '{{ find_passwd.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_passwd.matched > 0
+  - find_passwd.is defined and find_passwd.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_privileged_commands_passwd | bool }}'
   - '{{ no_reboot_needed | bool }}'
@@ -6163,7 +6163,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_chsh.matched == 0
+  - find_chsh.is defined and find_chsh.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -6189,7 +6189,7 @@
     all_files:
     - '{{ find_chsh.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_chsh.matched > 0
+  - find_chsh.is defined and find_chsh.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -6295,7 +6295,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_unix_chkpwd.matched == 0
+  - find_unix_chkpwd.is defined and find_unix_chkpwd.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ audit_rules_privileged_commands_unix_chkpwd | bool }}'
@@ -6321,7 +6321,7 @@
     all_files:
     - '{{ find_unix_chkpwd.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_unix_chkpwd.matched > 0
+  - find_unix_chkpwd.is defined and find_unix_chkpwd.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ audit_rules_privileged_commands_unix_chkpwd | bool }}'
@@ -6427,7 +6427,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_pam_timestamp_check.matched == 0
+  - find_pam_timestamp_check.is defined and find_pam_timestamp_check.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -6453,7 +6453,7 @@
     all_files:
     - '{{ find_pam_timestamp_check.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_pam_timestamp_check.matched > 0
+  - find_pam_timestamp_check.is defined and find_pam_timestamp_check.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -6559,7 +6559,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_newgrp.matched == 0
+  - find_newgrp.is defined and find_newgrp.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -6585,7 +6585,7 @@
     all_files:
     - '{{ find_newgrp.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_newgrp.matched > 0
+  - find_newgrp.is defined and find_newgrp.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -6691,7 +6691,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_chage.matched == 0
+  - find_chage.is defined and find_chage.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ audit_rules_privileged_commands_chage | bool }}'
@@ -6717,7 +6717,7 @@
     all_files:
     - '{{ find_chage.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_chage.matched > 0
+  - find_chage.is defined and find_chage.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ audit_rules_privileged_commands_chage | bool }}'
@@ -6856,7 +6856,7 @@
     all_files:
     - /etc/audit/rules.d/logins.rules
   when:
-  - find_faillock.matched == 0
+  - find_faillock.is defined and find_faillock.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_login_events_faillock | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -6886,7 +6886,7 @@
     all_files:
     - '{{ find_faillock.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_faillock.matched > 0
+  - find_faillock.is defined and find_faillock.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_login_events_faillock | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -7037,7 +7037,7 @@
     all_files:
     - /etc/audit/rules.d/logins.rules
   when:
-  - find_tallylog.matched == 0
+  - find_tallylog.is defined and find_tallylog.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -7067,7 +7067,7 @@
     all_files:
     - '{{ find_tallylog.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_tallylog.matched > 0
+  - find_tallylog.is defined and find_tallylog.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -7218,7 +7218,7 @@
     all_files:
     - /etc/audit/rules.d/logins.rules
   when:
-  - find_lastlog.matched == 0
+  - find_lastlog.is defined and find_lastlog.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_login_events_lastlog | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -7248,7 +7248,7 @@
     all_files:
     - '{{ find_lastlog.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_lastlog.matched > 0
+  - find_lastlog.is defined and find_lastlog.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_login_events_lastlog | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -7878,7 +7878,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_lchown.matched == 0
+  - find_lchown.is defined and find_lchown.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -7912,7 +7912,7 @@
     all_files:
     - '{{ find_lchown.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_lchown.matched > 0
+  - find_lchown.is defined and find_lchown.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -7981,7 +7981,7 @@
     line: -a always,exit -F arch=b64 -S lchown -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -8051,7 +8051,7 @@
     dest: /etc/audit/audit.rules
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -8153,7 +8153,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_fchownat.matched == 0
+  - find_fchownat.is defined and find_fchownat.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_fchownat | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -8187,7 +8187,7 @@
     all_files:
     - '{{ find_fchownat.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_fchownat.matched > 0
+  - find_fchownat.is defined and find_fchownat.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_fchownat | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -8256,7 +8256,7 @@
     line: -a always,exit -F arch=b64 -S fchownat -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_fchownat | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -8326,7 +8326,7 @@
     dest: /etc/audit/audit.rules
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_fchownat | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -8428,7 +8428,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_setxattr.matched == 0
+  - find_setxattr.is defined and find_setxattr.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_setxattr | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -8462,7 +8462,7 @@
     all_files:
     - '{{ find_setxattr.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_setxattr.matched > 0
+  - find_setxattr.is defined and find_setxattr.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_setxattr | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -8531,7 +8531,7 @@
     line: -a always,exit -F arch=b64 -S setxattr -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_setxattr | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -8601,7 +8601,7 @@
     dest: /etc/audit/audit.rules
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_setxattr | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -8703,7 +8703,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_chmod.matched == 0
+  - find_chmod.is defined and find_chmod.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -8737,7 +8737,7 @@
     all_files:
     - '{{ find_chmod.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_chmod.matched > 0
+  - find_chmod.is defined and find_chmod.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -8806,7 +8806,7 @@
     line: -a always,exit -F arch=b64 -S chmod -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -8876,7 +8876,7 @@
     dest: /etc/audit/audit.rules
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -8978,7 +8978,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_removexattr.matched == 0
+  - find_removexattr.is defined and find_removexattr.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -9012,7 +9012,7 @@
     all_files:
     - '{{ find_removexattr.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_removexattr.matched > 0
+  - find_removexattr.is defined and find_removexattr.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -9081,7 +9081,7 @@
     line: -a always,exit -F arch=b64 -S removexattr -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -9151,7 +9151,7 @@
     dest: /etc/audit/audit.rules
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -9253,7 +9253,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_lsetxattr.matched == 0
+  - find_lsetxattr.is defined and find_lsetxattr.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_lsetxattr | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -9287,7 +9287,7 @@
     all_files:
     - '{{ find_lsetxattr.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_lsetxattr.matched > 0
+  - find_lsetxattr.is defined and find_lsetxattr.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_lsetxattr | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -9356,7 +9356,7 @@
     line: -a always,exit -F arch=b64 -S lsetxattr -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_lsetxattr | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -9426,7 +9426,7 @@
     dest: /etc/audit/audit.rules
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_lsetxattr | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -9528,7 +9528,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_chown.matched == 0
+  - find_chown.is defined and find_chown.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_chown | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -9562,7 +9562,7 @@
     all_files:
     - '{{ find_chown.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_chown.matched > 0
+  - find_chown.is defined and find_chown.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_chown | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -9631,7 +9631,7 @@
     line: -a always,exit -F arch=b64 -S chown -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_chown | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -9701,7 +9701,7 @@
     dest: /etc/audit/audit.rules
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_chown | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -9803,7 +9803,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_fremovexattr.matched == 0
+  - find_fremovexattr.is defined and find_fremovexattr.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -9837,7 +9837,7 @@
     all_files:
     - '{{ find_fremovexattr.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_fremovexattr.matched > 0
+  - find_fremovexattr.is defined and find_fremovexattr.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -9906,7 +9906,7 @@
     line: -a always,exit -F arch=b64 -S fremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -9976,7 +9976,7 @@
     dest: /etc/audit/audit.rules
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -10078,7 +10078,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_lremovexattr.matched == 0
+  - find_lremovexattr.is defined and find_lremovexattr.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -10112,7 +10112,7 @@
     all_files:
     - '{{ find_lremovexattr.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_lremovexattr.matched > 0
+  - find_lremovexattr.is defined and find_lremovexattr.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -10181,7 +10181,7 @@
     line: -a always,exit -F arch=b64 -S lremovexattr -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -10251,7 +10251,7 @@
     dest: /etc/audit/audit.rules
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -10353,7 +10353,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_fchmod.matched == 0
+  - find_fchmod.is defined and find_fchmod.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -10387,7 +10387,7 @@
     all_files:
     - '{{ find_fchmod.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_fchmod.matched > 0
+  - find_fchmod.is defined and find_fchmod.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -10456,7 +10456,7 @@
     line: -a always,exit -F arch=b64 -S fchmod -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -10526,7 +10526,7 @@
     dest: /etc/audit/audit.rules
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -10628,7 +10628,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_fchmodat.matched == 0
+  - find_fchmodat.is defined and find_fchmodat.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -10662,7 +10662,7 @@
     all_files:
     - '{{ find_fchmodat.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_fchmodat.matched > 0
+  - find_fchmodat.is defined and find_fchmodat.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -10731,7 +10731,7 @@
     line: -a always,exit -F arch=b64 -S fchmodat -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -10801,7 +10801,7 @@
     dest: /etc/audit/audit.rules
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -10903,7 +10903,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_fsetxattr.matched == 0
+  - find_fsetxattr.is defined and find_fsetxattr.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_fsetxattr | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -10937,7 +10937,7 @@
     all_files:
     - '{{ find_fsetxattr.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_fsetxattr.matched > 0
+  - find_fsetxattr.is defined and find_fsetxattr.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_fsetxattr | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -11006,7 +11006,7 @@
     line: -a always,exit -F arch=b64 -S fsetxattr -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_fsetxattr | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -11076,7 +11076,7 @@
     dest: /etc/audit/audit.rules
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_fsetxattr | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -11178,7 +11178,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_fchown.matched == 0
+  - find_fchown.is defined and find_fchown.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_fchown | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -11212,7 +11212,7 @@
     all_files:
     - '{{ find_fchown.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_fchown.matched > 0
+  - find_fchown.is defined and find_fchown.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_fchown | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -11281,7 +11281,7 @@
     line: -a always,exit -F arch=b64 -S fchown -F auid>=1000 -F auid!=unset -F key=perm_mod
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_fchown | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -11351,7 +11351,7 @@
     dest: /etc/audit/audit.rules
     create: true
   when:
-  - audit_arch == 'b64'
+  - audit_arch is defined and audit_arch == 'b64'
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_dac_modification_fchown | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -11456,7 +11456,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_passwd.matched == 0
+  - find_passwd.is defined and find_passwd.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -11491,7 +11491,7 @@
     all_files:
     - '{{ find_passwd.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_passwd.matched > 0
+  - find_passwd.is defined and find_passwd.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -11667,7 +11667,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_shadow.matched == 0
+  - find_shadow.is defined and find_shadow.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_usergroup_modification_shadow | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -11702,7 +11702,7 @@
     all_files:
     - '{{ find_shadow.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_shadow.matched > 0
+  - find_shadow.is defined and find_shadow.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_usergroup_modification_shadow | bool }}'
   - '{{ restrict_strategy | bool }}'
@@ -11878,7 +11878,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_group.matched == 0
+  - find_group.is defined and find_group.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -11913,7 +11913,7 @@
     all_files:
     - '{{ find_group.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_group.matched > 0
+  - find_group.is defined and find_group.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -12089,7 +12089,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_opasswd.matched == 0
+  - find_opasswd.is defined and find_opasswd.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -12124,7 +12124,7 @@
     all_files:
     - '{{ find_opasswd.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_opasswd.matched > 0
+  - find_opasswd.is defined and find_opasswd.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ restrict_strategy | bool }}'
   - '{{ reboot_required | bool }}'
@@ -12300,7 +12300,7 @@
     all_files:
     - /etc/audit/rules.d/privileged.rules
   when:
-  - find_gshadow.matched == 0
+  - find_gshadow.is defined and find_gshadow.matched == 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_usergroup_modification_gshadow | bool }}'
   - '{{ reboot_required | bool }}'
@@ -12335,7 +12335,7 @@
     all_files:
     - '{{ find_gshadow.files | map(attribute=''path'') | list | first }}'
   when:
-  - find_gshadow.matched > 0
+  - find_gshadow.is defined and find_gshadow.matched > 0
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ audit_rules_usergroup_modification_gshadow | bool }}'
   - '{{ reboot_required | bool }}'
