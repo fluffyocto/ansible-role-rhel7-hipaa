@@ -3,7 +3,7 @@ galaxy_info:
   author: ComplianceAsCode development team
   description: Health Insurance Portability and Accountability Act (HIPAA)
 
-  issue_tracker_url: https://github.com/ComplianceAsCode/content/issues
+  issue_tracker_url: https://github.com/complianceascode/content/issues
 
   license: BSD-3-Clause
 
