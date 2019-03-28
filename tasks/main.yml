@@ -12528,7 +12528,7 @@
     path: /boot/grub2/grub.cfg
     group: 0
   when:
-  - file_exists.stat.exists
+  - file_exists.stat is defined and file_exists.stat.exists
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ no_reboot_needed | bool }}'
   - '{{ configure_strategy | bool }}'
@@ -12579,7 +12579,7 @@
     path: /boot/grub2/grub.cfg
     owner: 0
   when:
-  - file_exists.stat.exists
+  - file_exists.stat is defined and file_exists.stat.exists
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ file_owner_grub2_cfg | bool }}'
   - '{{ no_reboot_needed | bool }}'
@@ -12628,7 +12628,7 @@
     path: /boot/grub2/grub.cfg
     mode: 384
   when:
-  - file_exists.stat.exists
+  - file_exists.stat is defined and file_exists.stat.exists
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - '{{ file_permissions_grub2_cfg | bool }}'
   - '{{ no_reboot_needed | bool }}'
