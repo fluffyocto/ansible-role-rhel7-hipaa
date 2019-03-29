@@ -606,8 +606,10 @@
   - '{{ medium_disruption | bool }}'
 
 - name: Read signatures in GPG key
-  shell: gpg --with-fingerprint --with-colons "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release" | grep "^fpr" | cut -d ":" -f
-    10
+  shell: 'set -o pipefail gpg --with-fingerprint --with-colons "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release" | grep "^fpr"
+    | cut -d ":" -f 10 '
+  args:
+    executable: /bin/bash
   changed_when: false
   register: gpg_fingerprints
   check_mode: false
@@ -868,9 +870,10 @@
   - DISA-STIG-RHEL-07-020060
 
 - name: Read list of files with incorrect permissions
-  shell: rpm -Va --nofiledigest | awk '{ if (substr($0,2,1)=="M") print $NF }'
+  shell: 'set -o pipefail rpm -Va --nofiledigest | awk ''{ if (substr($0,2,1)=="M") print $NF }'' '
   args:
     warn: false
+    executable: /bin/bash
   register: files_with_incorrect_permissions
   failed_when: false
   changed_when: false
@@ -990,9 +993,10 @@
   - DISA-STIG-RHEL-07-010020
 
 - name: Read files with incorrect hash
-  shell: rpm -Va | grep -E '^..5.* /(bin|sbin|lib|lib64|usr)/' | awk '{print $NF}'
+  shell: 'set -o pipefail rpm -Va | grep -E ''^..5.* /(bin|sbin|lib|lib64|usr)/'' | awk ''{print $NF}'' '
   args:
     warn: false
+    executable: /bin/bash
   register: files_with_incorrect_hash
   changed_when: false
   when:
