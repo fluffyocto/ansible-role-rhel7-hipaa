@@ -163,7 +163,7 @@
 - name: Ensure libsemanage-python installed
   package:
     name: libsemanage-python
-    state: latest
+    state: present
   tags:
   - sebool_selinuxuser_execstack
   - medium_severity
@@ -202,7 +202,7 @@
 - name: Ensure libsemanage-python installed
   package:
     name: libsemanage-python
-    state: latest
+    state: present
   tags:
   - sebool_selinuxuser_execheap
   - medium_severity
@@ -241,7 +241,7 @@
 - name: Ensure libsemanage-python installed
   package:
     name: libsemanage-python
-    state: latest
+    state: present
   tags:
   - sebool_selinuxuser_execmod
   - medium_severity
@@ -609,6 +609,7 @@
   shell: 'set -o pipefail gpg --with-fingerprint --with-colons "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release" | grep "^fpr"
     | cut -d ":" -f 10 '
   args:
+    warn: false
     executable: /bin/bash
   changed_when: false
   register: gpg_fingerprints
@@ -12872,6 +12873,8 @@
 
 - name: Direct root Logins Not Allowed
   shell: echo > /etc/securetty
+  args:
+    warn: false
   changed_when: securetty_empty.stat.size > 1
   tags:
   - no_direct_root_logins
