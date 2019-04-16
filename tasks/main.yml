@@ -3648,7 +3648,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-27206-2
+  - CCE-80995-4
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-2(a)
@@ -3684,7 +3684,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-27206-2
+  - CCE-80995-4
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-2(a)
@@ -3718,7 +3718,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-27206-2
+  - CCE-80995-4
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-2(a)
@@ -3752,7 +3752,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-27206-2
+  - CCE-80995-4
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-2(a)
@@ -3786,7 +3786,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-27206-2
+  - CCE-80995-4
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-2(a)
@@ -3821,7 +3821,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-27206-2
+  - CCE-80995-4
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-2(a)
@@ -3855,7 +3855,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-27206-2
+  - CCE-80995-4
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-2(a)
@@ -3891,7 +3891,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-27206-2
+  - CCE-80995-4
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-2(a)
@@ -3923,7 +3923,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-27206-2
+  - CCE-80996-2
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-2(a)
@@ -3959,7 +3959,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-27206-2
+  - CCE-80996-2
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-2(a)
@@ -3993,7 +3993,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-27206-2
+  - CCE-80996-2
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-2(a)
@@ -4027,7 +4027,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-27206-2
+  - CCE-80996-2
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-2(a)
@@ -4061,7 +4061,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-27206-2
+  - CCE-80996-2
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-2(a)
@@ -4096,7 +4096,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-27206-2
+  - CCE-80996-2
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-2(a)
@@ -4130,7 +4130,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-27206-2
+  - CCE-80996-2
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-2(a)
@@ -4166,7 +4166,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-27206-2
+  - CCE-80996-2
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-2(a)
@@ -6994,7 +6994,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-80382-5
+  - CCE-80994-7
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-12(a)
@@ -7026,7 +7026,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-80382-5
+  - CCE-80994-7
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-12(a)
@@ -7057,7 +7057,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-80382-5
+  - CCE-80994-7
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-12(a)
@@ -7087,7 +7087,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-80382-5
+  - CCE-80994-7
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-12(a)
@@ -7117,7 +7117,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-80382-5
+  - CCE-80994-7
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-12(a)
@@ -7147,7 +7147,7 @@
   - low_complexity
   - low_disruption
   - reboot_required
-  - CCE-80382-5
+  - CCE-80994-7
   - NIST-800-53-AC-17(7)
   - NIST-800-53-AU-1(b)
   - NIST-800-53-AU-12(a)
@@ -13734,6 +13734,14 @@
     state: stopped
   register: service_result
   failed_when: service_result is failed and ('Could not find the requested service' not in service_result.msg)
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - medium_severity | bool
+  - service_xinetd_disabled | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - service_xinetd_disabled
   - medium_severity
@@ -13745,13 +13753,6 @@
   - NIST-800-53-AC-17(8)
   - NIST-800-53-CM-7
   - NIST-800-171-3.4.7
-  when:
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - service_xinetd_disabled | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Disable socket of service xinetd if applicable
   service:
@@ -13760,6 +13761,14 @@
     state: stopped
   register: socket_result
   failed_when: socket_result is failed and ('Could not find the requested service' not in socket_result.msg)
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - medium_severity | bool
+  - service_xinetd_disabled | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - service_xinetd_disabled
   - medium_severity
@@ -13771,18 +13780,19 @@
   - NIST-800-53-AC-17(8)
   - NIST-800-53-CM-7
   - NIST-800-171-3.4.7
-  when:
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - service_xinetd_disabled | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Ensure xinetd is removed
   package:
     name: xinetd
     state: absent
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - medium_severity | bool
+  - package_xinetd_removed | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - package_xinetd_removed
   - medium_severity
@@ -13793,13 +13803,6 @@
   - CCE-27354-0
   - NIST-800-53-AC-17(8)
   - NIST-800-53-CM-7
-  when:
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - package_xinetd_removed | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Ensure telnet is removed
   package:
