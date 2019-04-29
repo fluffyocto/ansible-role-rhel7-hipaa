@@ -34,6 +34,14 @@
     state: stopped
   register: service_result
   failed_when: service_result is failed and ('Could not find the requested service' not in service_result.msg)
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - service_autofs_disabled | bool
+  - medium_severity | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - service_autofs_disabled
   - medium_severity
@@ -48,13 +56,6 @@
   - NIST-800-53-IA-3
   - NIST-800-171-3.4.6
   - DISA-STIG-RHEL-07-020110
-  when:
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - service_autofs_disabled | bool
-  - medium_severity | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Disable socket of service autofs if applicable
   service:
@@ -63,6 +64,14 @@
     state: stopped
   register: socket_result
   failed_when: socket_result is failed and ('Could not find the requested service' not in socket_result.msg)
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - service_autofs_disabled | bool
+  - medium_severity | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - service_autofs_disabled
   - medium_severity
@@ -77,13 +86,6 @@
   - NIST-800-53-IA-3
   - NIST-800-171-3.4.6
   - DISA-STIG-RHEL-07-020110
-  when:
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - service_autofs_disabled | bool
-  - medium_severity | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Ensure sysctl fs.suid_dumpable is set to 0
   sysctl:
@@ -164,6 +166,14 @@
   package:
     name: libsemanage-python
     state: present
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - no_reboot_needed | bool
+  - medium_severity | bool
+  - sebool_selinuxuser_execstack | bool
+  - enable_strategy | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - sebool_selinuxuser_execstack
   - medium_severity
@@ -171,19 +181,20 @@
   - low_complexity
   - low_disruption
   - no_reboot_needed
-  when:
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - sebool_selinuxuser_execstack | bool
-  - enable_strategy | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Set SELinux boolean selinuxuser_execstack accordingly
   seboolean:
     name: selinuxuser_execstack
     state: '{{ var_selinuxuser_execstack }}'
     persistent: true
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - no_reboot_needed | bool
+  - medium_severity | bool
+  - sebool_selinuxuser_execstack | bool
+  - enable_strategy | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - sebool_selinuxuser_execstack
   - medium_severity
@@ -191,18 +202,19 @@
   - low_complexity
   - low_disruption
   - no_reboot_needed
-  when:
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - sebool_selinuxuser_execstack | bool
-  - enable_strategy | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Ensure libsemanage-python installed
   package:
     name: libsemanage-python
     state: present
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - no_reboot_needed | bool
+  - medium_severity | bool
+  - sebool_selinuxuser_execheap | bool
+  - enable_strategy | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - sebool_selinuxuser_execheap
   - medium_severity
@@ -210,19 +222,20 @@
   - low_complexity
   - low_disruption
   - no_reboot_needed
-  when:
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - sebool_selinuxuser_execheap | bool
-  - enable_strategy | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Set SELinux boolean selinuxuser_execheap accordingly
   seboolean:
     name: selinuxuser_execheap
     state: '{{ var_selinuxuser_execheap }}'
     persistent: true
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - no_reboot_needed | bool
+  - medium_severity | bool
+  - sebool_selinuxuser_execheap | bool
+  - enable_strategy | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - sebool_selinuxuser_execheap
   - medium_severity
@@ -230,18 +243,19 @@
   - low_complexity
   - low_disruption
   - no_reboot_needed
-  when:
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - sebool_selinuxuser_execheap | bool
-  - enable_strategy | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Ensure libsemanage-python installed
   package:
     name: libsemanage-python
     state: present
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - sebool_selinuxuser_execmod | bool
+  - medium_severity | bool
+  - no_reboot_needed | bool
+  - enable_strategy | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - sebool_selinuxuser_execmod
   - medium_severity
@@ -249,19 +263,20 @@
   - low_complexity
   - low_disruption
   - no_reboot_needed
-  when:
-  - sebool_selinuxuser_execmod | bool
-  - medium_severity | bool
-  - no_reboot_needed | bool
-  - enable_strategy | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Set SELinux boolean selinuxuser_execmod accordingly
   seboolean:
     name: selinuxuser_execmod
     state: '{{ var_selinuxuser_execmod }}'
     persistent: true
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - sebool_selinuxuser_execmod | bool
+  - medium_severity | bool
+  - no_reboot_needed | bool
+  - enable_strategy | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - sebool_selinuxuser_execmod
   - medium_severity
@@ -269,13 +284,6 @@
   - low_complexity
   - low_disruption
   - no_reboot_needed
-  when:
-  - sebool_selinuxuser_execmod | bool
-  - medium_severity | bool
-  - no_reboot_needed | bool
-  - enable_strategy | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Ensure SELinux State is Enforcing
   lineinfile:
@@ -314,6 +322,14 @@
   replace:
     dest: /etc/default/grub
     regexp: selinux=0
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - no_reboot_needed | bool
+  - grub2_enable_selinux | bool
+  - restrict_strategy | bool
+  - medium_severity | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - grub2_enable_selinux
   - medium_severity
@@ -331,13 +347,6 @@
   - NIST-800-53-SI-6(a)
   - NIST-800-171-3.1.2
   - NIST-800-171-3.7.2
-  when:
-  - no_reboot_needed | bool
-  - grub2_enable_selinux | bool
-  - restrict_strategy | bool
-  - medium_severity | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Configure SELinux Policy
   lineinfile:
@@ -12986,6 +12995,14 @@
     state: stopped
   register: service_result
   failed_when: service_result is failed and ('Could not find the requested service' not in service_result.msg)
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - medium_severity | bool
+  - low_disruption | bool
+  - service_zebra_disabled | bool
+  - low_complexity | bool
   tags:
   - service_zebra_disabled
   - medium_severity
@@ -12995,13 +13012,6 @@
   - no_reboot_needed
   - CCE-27191-6
   - NIST-800-53-SC-32
-  when:
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - low_disruption | bool
-  - service_zebra_disabled | bool
-  - low_complexity | bool
 
 - name: Disable socket of service zebra if applicable
   service:
@@ -13010,6 +13020,14 @@
     state: stopped
   register: socket_result
   failed_when: socket_result is failed and ('Could not find the requested service' not in socket_result.msg)
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - medium_severity | bool
+  - low_disruption | bool
+  - service_zebra_disabled | bool
+  - low_complexity | bool
   tags:
   - service_zebra_disabled
   - medium_severity
@@ -13019,13 +13037,6 @@
   - no_reboot_needed
   - CCE-27191-6
   - NIST-800-53-SC-32
-  when:
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - low_disruption | bool
-  - service_zebra_disabled | bool
-  - low_complexity | bool
 
 - name: Enable SSH Warning Banner
   lineinfile:
@@ -13548,6 +13559,14 @@
     state: stopped
   register: service_result
   failed_when: service_result is failed and ('Could not find the requested service' not in service_result.msg)
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - service_kdump_disabled | bool
+  - medium_severity | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - service_kdump_disabled
   - medium_severity
@@ -13560,13 +13579,6 @@
   - NIST-800-53-CM-7
   - NIST-800-53-CM-6(b)
   - DISA-STIG-RHEL-07-021300
-  when:
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - service_kdump_disabled | bool
-  - medium_severity | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Disable socket of service kdump if applicable
   service:
@@ -13575,6 +13587,14 @@
     state: stopped
   register: socket_result
   failed_when: socket_result is failed and ('Could not find the requested service' not in socket_result.msg)
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - service_kdump_disabled | bool
+  - medium_severity | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - service_kdump_disabled
   - medium_severity
@@ -13587,13 +13607,6 @@
   - NIST-800-53-CM-7
   - NIST-800-53-CM-6(b)
   - DISA-STIG-RHEL-07-021300
-  when:
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - service_kdump_disabled | bool
-  - medium_severity | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Ensure ypbind is removed
   package:
@@ -13645,6 +13658,14 @@
     state: stopped
   register: service_result
   failed_when: service_result is failed and ('Could not find the requested service' not in service_result.msg)
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - service_ypbind_disabled | bool
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - medium_severity | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - service_ypbind_disabled
   - medium_severity
@@ -13655,13 +13676,6 @@
   - CCE-27385-4
   - NIST-800-53-AC-17(8)
   - NIST-800-53-CM-7
-  when:
-  - service_ypbind_disabled | bool
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Disable socket of service ypbind if applicable
   service:
@@ -13670,6 +13684,14 @@
     state: stopped
   register: socket_result
   failed_when: socket_result is failed and ('Could not find the requested service' not in socket_result.msg)
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - service_ypbind_disabled | bool
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - medium_severity | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - service_ypbind_disabled
   - medium_severity
@@ -13680,13 +13702,6 @@
   - CCE-27385-4
   - NIST-800-53-AC-17(8)
   - NIST-800-53-CM-7
-  when:
-  - service_ypbind_disabled | bool
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - medium_severity | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Ensure talk-server is removed
   package:
@@ -13854,6 +13869,14 @@
     state: stopped
   register: service_result
   failed_when: service_result is failed and ('Could not find the requested service' not in service_result.msg)
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - service_telnet_disabled | bool
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - high_severity | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - service_telnet_disabled
   - high_severity
@@ -13867,13 +13890,6 @@
   - NIST-800-53-IA-5(1)(c)
   - NIST-800-171-3.1.13
   - NIST-800-171-3.4.7
-  when:
-  - service_telnet_disabled | bool
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - high_severity | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Disable socket of service telnet if applicable
   service:
@@ -13882,6 +13898,14 @@
     state: stopped
   register: socket_result
   failed_when: socket_result is failed and ('Could not find the requested service' not in socket_result.msg)
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - service_telnet_disabled | bool
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - high_severity | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - service_telnet_disabled
   - high_severity
@@ -13895,13 +13919,6 @@
   - NIST-800-53-IA-5(1)(c)
   - NIST-800-171-3.1.13
   - NIST-800-171-3.4.7
-  when:
-  - service_telnet_disabled | bool
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - high_severity | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Disable service rexec
   service:
@@ -13910,6 +13927,14 @@
     state: stopped
   register: service_result
   failed_when: service_result is failed and ('Could not find the requested service' not in service_result.msg)
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - service_rexec_disabled | bool
+  - high_severity | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - service_rexec_disabled
   - high_severity
@@ -13922,13 +13947,6 @@
   - NIST-800-53-CM-7
   - NIST-800-171-3.1.13
   - NIST-800-171-3.4.7
-  when:
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - service_rexec_disabled | bool
-  - high_severity | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Disable socket of service rexec if applicable
   service:
@@ -13937,6 +13955,14 @@
     state: stopped
   register: socket_result
   failed_when: socket_result is failed and ('Could not find the requested service' not in socket_result.msg)
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - service_rexec_disabled | bool
+  - high_severity | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - service_rexec_disabled
   - high_severity
@@ -13949,13 +13975,6 @@
   - NIST-800-53-CM-7
   - NIST-800-171-3.1.13
   - NIST-800-171-3.4.7
-  when:
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - service_rexec_disabled | bool
-  - high_severity | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Disable service rlogin
   service:
@@ -13964,6 +13983,14 @@
     state: stopped
   register: service_result
   failed_when: service_result is failed and ('Could not find the requested service' not in service_result.msg)
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - service_rlogin_disabled | bool
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - high_severity | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - service_rlogin_disabled
   - high_severity
@@ -13977,13 +14004,6 @@
   - NIST-800-53-IA-5(1)(c)
   - NIST-800-171-3.1.13
   - NIST-800-171-3.4.7
-  when:
-  - service_rlogin_disabled | bool
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - high_severity | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Disable socket of service rlogin if applicable
   service:
@@ -13992,6 +14012,14 @@
     state: stopped
   register: socket_result
   failed_when: socket_result is failed and ('Could not find the requested service' not in socket_result.msg)
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - service_rlogin_disabled | bool
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - high_severity | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - service_rlogin_disabled
   - high_severity
@@ -14005,13 +14033,6 @@
   - NIST-800-53-IA-5(1)(c)
   - NIST-800-171-3.1.13
   - NIST-800-171-3.4.7
-  when:
-  - service_rlogin_disabled | bool
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - high_severity | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - block:
   - name: Detect shosts.equiv Files on the System
@@ -14074,6 +14095,14 @@
     state: stopped
   register: service_result
   failed_when: service_result is failed and ('Could not find the requested service' not in service_result.msg)
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - high_severity | bool
+  - service_rsh_disabled | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - service_rsh_disabled
   - high_severity
@@ -14087,13 +14116,6 @@
   - NIST-800-53-IA-5(1)(c)
   - NIST-800-171-3.1.13
   - NIST-800-171-3.4.7
-  when:
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - high_severity | bool
-  - service_rsh_disabled | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Disable socket of service rsh if applicable
   service:
@@ -14102,6 +14124,14 @@
     state: stopped
   register: socket_result
   failed_when: socket_result is failed and ('Could not find the requested service' not in socket_result.msg)
+  when:
+  - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  - disable_strategy | bool
+  - no_reboot_needed | bool
+  - high_severity | bool
+  - service_rsh_disabled | bool
+  - low_disruption | bool
+  - low_complexity | bool
   tags:
   - service_rsh_disabled
   - high_severity
@@ -14115,13 +14145,6 @@
   - NIST-800-53-IA-5(1)(c)
   - NIST-800-171-3.1.13
   - NIST-800-171-3.4.7
-  when:
-  - disable_strategy | bool
-  - no_reboot_needed | bool
-  - high_severity | bool
-  - service_rsh_disabled | bool
-  - low_disruption | bool
-  - low_complexity | bool
 
 - name: Ensure rsh is removed
   package:
